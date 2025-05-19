@@ -1,20 +1,39 @@
 import { useSelector } from 'react-redux';
 
-export default function Measurements() {
-  const measurements = useSelector(state => state.timer.measurements);
+export default function MeasurementsDisplay({ type }) {
+  const clockMeasurements = useSelector(state => state.clock.measurements);
+  const timerMeasurements = useSelector(state => state.timer.measurements);
+  const laps = useSelector(state => state.stopwatch.laps);
 
-  if (!measurements.length) return (
+  let title = '';
+  let data = [];
+
+  if (type === 'clock') {
+    title = 'Keçmiş Saatlar';
+    data = clockMeasurements;
+  } else if (type === 'timer') {
+    title = 'Keçmiş Taymerlər';
+    data = timerMeasurements;
+  } else if (type === 'stopwatch') {
+    title = 'Dairələr';
+    data = laps; // Stopwatch laps artıq formatlı saxlanılır
+  } else {
+    return null; // Naməlum tip
+  }
+
+
+  if (data.length === 0) return (
     <div style={{ marginTop: 40 }}>
-      <h3>Keçmiş ölçmələr</h3>
+      <h3>{title}</h3>
       <div>Yoxdur</div>
     </div>
   );
 
   return (
     <div style={{ marginTop: 40 }}>
-      <h3>Keçmiş ölçmələr</h3>
+      <h3>{title}</h3>
       <ul className="measurements-list">
-        {measurements.map((m, i) => (
+        {data.map((m, i) => (
           <li key={i}>{m}</li>
         ))}
       </ul>

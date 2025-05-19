@@ -30,12 +30,24 @@ const timerSlice = createSlice({
         state.seconds.toString().padStart(2, '0'),
       ].join(':');
       state.measurements.unshift(time);
-      if (state.measurements.length > 10) state.measurements.pop();
+      if (state.measurements.length > 10) state.measurements.pop(); // Son 10 ölçünü saxla
     },
-    resetTimer: (state) => {
+    resetTimer: (state) => { // Taymeri sıfırlamaq üçün
       state.hours = 0;
       state.minutes = 0;
       state.seconds = 0;
+    },
+    tickTimer: (state) => { // Hər saniyə çağırmaq üçün tick reducer
+      if (state.seconds > 0) {
+        state.seconds -= 1;
+      } else if (state.minutes > 0) {
+        state.minutes -= 1;
+        state.seconds = 59;
+      } else if (state.hours > 0) {
+        state.hours -= 1;
+        state.minutes = 59;
+        state.seconds = 59;
+      }
     },
   },
 });
@@ -44,7 +56,7 @@ export const {
   incrementHours, decrementHours,
   incrementMinutes, decrementMinutes,
   incrementSeconds, decrementSeconds,
-  setTimerTime, addTimerMeasurement, resetTimer
+  setTimerTime, addTimerMeasurement, resetTimer, tickTimer
 } = timerSlice.actions;
 
 export default timerSlice.reducer;

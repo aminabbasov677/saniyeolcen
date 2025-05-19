@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { start, stop, reset, tick, addLap } from '../redux/stopwatchSlice';
-import { useEffect, useRef } from 'react';
+import { reset, addLap } from '../redux/stopwatchSlice';
+import { useEffect } from 'react';
+import MeasurementsDisplay from './Measurements';
+import { forceStop } from '../redux/globalStatusSlice'; // Global forceStop action-ı
 
+// Vaxtı formatlayan köməkçi funksiya - bu funksiya olduğu kimi qalır
 function format(sec) {
   const h = Math.floor(sec / 3600);
   const m = Math.floor((sec % 3600) / 60);
@@ -11,37 +14,47 @@ function format(sec) {
 
 export default function Stopwatch() {
   const dispatch = useDispatch();
-  const { running, elapsed, laps } = useSelector(state => state.stopwatch);
-  const intervalRef = useRef();
+  const { elapsed } = useSelector(state => state.stopwatch); // Elapsed vaxtı Redux state-dən oxu
+  const laps = useSelector(state => state.stopwatch.laps); // Lap-ları Redux state-dən oxu
+  const { isRunning, activePage } = useSelector(state => state.globalStatus); // Global state-dən oxu
 
-  useEffect(() => {
-    if (running) {
-      intervalRef.current = setInterval(() => dispatch(tick()), 1000);
-    } else {
-      clearInterval(intervalRef.current);
+  const handleReset = () => {
+    dispatch(reset());
+    // Sıfırlayandan sonra əgər Saniyəölçən işləyirdisə, global statusu da dayandırırıq
+    if (isRunning && activePage === '/') { // activePage === '/' saniyəölçən səhifəsidir
+         dispatch(forceStop());
     }
-    return () => clearInterval(intervalRef.current);
-  }, [running, dispatch]);
+  };
+
+  const handleAddLap = () => {
+    dispatch(addLap());
+  };
+
+  // Elapsed vaxtı sıfırdırsa Sıfırla və Dairə düymələri passiv olsun
+  const isElapsedZero = elapsed === 0;
+
+  // Sıfırla düyməsi: yalnız vaxt sıfırdan fərqli olanda aktiv olsun
+  const disableReset = isElapsedZero;
+  // Dairə düyməsi: yalnız Saniyəölçən işləyəndə (isRunning true və activePage saniyəölçəndirsə) və vaxt sıfırdan fərqli olanda aktiv olsun.
+  const disableLap = !isRunning || isElapsedZero;
+
 
   return (
     <div className="timer-container">
-      <div style={{ fontSize: '80px', margin: '30px 0' }}>{format(elapsed)}</div>
-      <div className="action-row">
-        <button className={`action-btn ${running ? 'stop' : 'start'}`}
-          onClick={() => dispatch(running ? stop() : start())}>
-          {running ? 'Dayan' : 'Başla'}
-        </button>
-        <button className="action-btn" onClick={() => dispatch(reset())}>Sıfırla</button>
-        <button className="action-btn" onClick={() => dispatch(addLap())} disabled={!running}>Dairə</button>
+      {/* Zaman göstəricisi */}
+      <div className="time-row" style={{ alignItems: 'center' }}>
+        <div style={{ fontSize: '80px', margin: '0 10px' }}>{format(elapsed)}</div>
+        {/* Play/Pause iconu burada YOXDUR */}
       </div>
-      <div style={{ marginTop: '40px' }}>
-        <h3>Dairələr</h3>
-        {laps.length === 0 ? <div>Yoxdur</div> :
-          <ul className="measurements-list">
-            {laps.map((l, i) => <li key={i}>{format(l)}</li>)}
-          </ul>
-        }
+
+      {/* Əlavə düymələr */}
+      <div className="secondary-action-row">
+        <button className="secondary-action-btn" onClick={handleReset} disabled={disableReset}>Sıfırla</button>
+        <button className="secondary-action-btn" onClick={handleAddLap} disabled={disableLap}>Dairə</button>
       </div>
+
+       {/* Lap-ları göstərən hissə */}
+       <MeasurementsDisplay type="stopwatch" />
     </div>
   );
 }

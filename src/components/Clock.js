@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setClockTime, addClockMeasurement } from '../redux/clockSlice';
 import { useEffect } from 'react';
+import MeasurementsDisplay from './Measurements';
 
 export default function Clock() {
   const dispatch = useDispatch();
-  const { hours, minutes, seconds, measurements } = useSelector(state => state.clock);
+  const { hours, minutes, seconds } = useSelector(state => state.clock); // Clock state-dən oxu
 
+  // Real saatı hər saniyə yeniləyən effekt
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -15,7 +17,7 @@ export default function Clock() {
         seconds: now.getSeconds(),
       }));
     };
-    updateTime();
+    updateTime(); // ilk renderdə də saatı göstər
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, [dispatch]);
@@ -36,20 +38,15 @@ export default function Clock() {
         <div className="time-block">
           <span className="time-value">{seconds.toString().padStart(2, '0')}</span>
         </div>
+         {/* Saatda Play/Pause iconu yoxdur */}
       </div>
-      <div className="action-row">
-        <button className="action-btn" onClick={handleSave}>
+      {/* Əlavə düymələr */}
+      <div className="secondary-action-row">
+        <button className="secondary-action-btn" onClick={handleSave}>
           Yadda saxla
         </button>
       </div>
-      <div style={{ marginTop: '40px' }}>
-        <h3>Keçmiş ölçmələr</h3>
-        {measurements.length === 0 ? <div>Yoxdur</div> :
-          <ul className="measurements-list">
-            {measurements.map((m, i) => <li key={i}>{m}</li>)}
-          </ul>
-        }
-      </div>
+      <MeasurementsDisplay type="clock" /> {/* Saat ölçülərini göstər */}
     </div>
   );
 }

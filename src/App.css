@@ -30,7 +30,7 @@ nav a.active, nav a[aria-current="page"] {
 }
 
 .timer-container {
-  max-width: 480px;
+  max-width: 560px;
   margin: 0 auto;
   background: #fff;
   border-radius: 18px;
@@ -42,7 +42,7 @@ nav a.active, nav a[aria-current="page"] {
 .time-row {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-end; /* Rəqəmləri eyni səviyyədə saxlayır */
   gap: 32px;
   margin-bottom: 32px;
 }
@@ -50,7 +50,7 @@ nav a.active, nav a[aria-current="page"] {
 .time-block {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 8px; /* Rəqəm və +/- düymələri arasındakı boşluq */
 }
 
 .time-value {
@@ -58,13 +58,13 @@ nav a.active, nav a[aria-current="page"] {
   font-weight: 400;
   margin: 0;
   letter-spacing: 2px;
-  min-width: 90px;
+  min-width: 90px; /* Rəqəmlərin enini sabit saxla */
   text-align: right;
 }
 
 .time-controls {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* +/- düymələr alt-alta */
   gap: 4px;
 }
 
@@ -89,38 +89,64 @@ nav a.active, nav a[aria-current="page"] {
   cursor: not-allowed;
 }
 
-.action-row {
-  margin: 24px 0 0 0;
+/* Play/Pause iconu stili */
+.icon-btn {
+  background: none; /* Fon yoxdur */
+  border: none;
+  padding: 0; /* Padding yoxdur */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; /* İkon ölçüsü */
+  height: 36px; /* İkon ölçüsü */
+  margin-left: 16px; /* Rəqəmlərdən bir az aralı */
+  transition: opacity 0.2s;
+}
+
+.icon-btn:disabled {
+  opacity: 0.5; /* Passiv olanda biraz solğun görünsün */
+  cursor: not-allowed;
+}
+
+.icon-btn svg {
+  fill: #222; /* Qara rəng */
+  width: 36px; /* SVG ölçüsü */
+  height: 36px; /* SVG ölçüsü */
+  display: block;
+}
+
+/* Əlavə düymələr üçün stil (fon yox) */
+.secondary-action-row {
+  margin-top: 24px;
   display: flex;
   justify-content: center;
   gap: 18px;
 }
 
-.action-btn {
-  background: #8e24aa;
-  color: #fff;
-  border: none;
+.secondary-action-btn {
+  background: none;
+  border: 1px solid #8e24aa; /* Rəngli çərçivə */
+  color: #8e24aa;
   border-radius: 8px;
   width: 100px;
   height: 40px;
   font-size: 18px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
-.action-btn:disabled {
-  background: #e1bee7;
+.secondary-action-btn:hover {
+  background: #8e24aa;
   color: #fff;
+}
+
+.secondary-action-btn:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-.action-btn.start {
-  background: #43a047;
-}
-.action-btn.stop {
-  background: #e53935;
-}
-
+/* Keçmiş ölçmələr/Dairələr listi stili */
 .measurements-list {
   list-style: none;
   padding: 0;
@@ -131,15 +157,17 @@ nav a.active, nav a[aria-current="page"] {
 .measurements-list li {
   font-size: 22px;
   margin-bottom: 4px;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', monospace; /* Şəkildəki kimi monospace font */
 }
 
+/* Başlıqlar stili */
 h3 {
   color: #8e24aa;
   font-weight: 500;
   margin-bottom: 12px;
 }
 
+/* Responsive dizayn üçün media query */
 @media (max-width: 600px) {
   .timer-container {
     max-width: 98vw;
@@ -150,5 +178,19 @@ h3 {
   }
   .time-value {
     font-size: 48px;
+    min-width: 50px;
   }
+   .icon-btn {
+     width: 30px;
+     height: 30px;
+     margin-left: 8px;
+   }
+   .icon-btn svg {
+      width: 30px;
+      height: 30px;
+   }
+   .secondary-action-btn {
+     width: 80px;
+     font-size: 16px;
+   }
 }
