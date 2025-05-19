@@ -3,15 +3,15 @@ import Clock from './components/Clock';
 import Stopwatch from './components/Stopwatch';
 import Timer from './components/Timer';
 import Navigation from './components/Navigation';
-import './App.css';
+import './App.css'; 
 
 function App() {
   return (
     <Router>
       <Navigation />
       <Routes>
-        <Route path="/" element={<Clock />} />
-        <Route path="/stopwatch" element={<Stopwatch />} />
+        <Route path="/" element={<Stopwatch />} />         n
+        <Route path="/clock" element={<Clock />} />
         <Route path="/timer" element={<Timer />} />
       </Routes>
     </Router>
