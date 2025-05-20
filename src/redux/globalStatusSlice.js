@@ -11,18 +11,16 @@ const globalStatusSlice = createSlice({
   reducers: {
     setActivePage: (state, action) => {
       state.activePage = action.payload;
-      // Səhifə dəyişəndə timer/stopwatch dayandırılsın (istəyə görə, şəkilə görə yox)
-      // state.isRunning = false;
+      
     },
     toggleRunning: (state) => {
-      // Yalnız Saniyəölçən və ya Taymer aktivdirsə, işə sal/dayandır
       if (state.activePage === '/' || state.activePage === '/timer') {
          state.isRunning = !state.isRunning;
       } else {
-         state.isRunning = false; // Saat səhifəsində həmişə false olsun
+         state.isRunning = false; 
       }
     },
-    forceStop: (state) => { // Sıfıra düşəndə dayandırmaq üçün
+    forceStop: (state) => { 
       state.isRunning = false;
     }
   },

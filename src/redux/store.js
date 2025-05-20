@@ -4,7 +4,7 @@ import timerReducer from './timerSlice';
 import stopwatchReducer from './stopwatchSlice';
 import globalStatusReducer from './globalStatusSlice';
 
-export const store = configureStore({ // default əvəzinə export const
+export const store = configureStore({
   reducer: {
     clock: clockReducer,
     timer: timerReducer,
@@ -13,4 +13,4 @@ export const store = configureStore({ // default əvəzinə export const
   },
 });
 
-export default store; // Default export-u da saxlaya bilərsiniz (GlobalPlayPauseButton üçün lazım)
+export default store; 

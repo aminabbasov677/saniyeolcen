@@ -5,19 +5,18 @@ import {
   incrementSeconds, decrementSeconds,
   setTimerTime, addTimerMeasurement, resetTimer
 } from '../redux/timerSlice';
-import { useRef, useState, useEffect } from 'react'; // useState silindi
+import { useRef, useState, useEffect } from 'react'; 
 import MeasurementsDisplay from './Measurements';
 
 export default function Timer() {
   const dispatch = useDispatch();
-  const { hours, minutes, seconds } = useSelector(state => state.timer); // Timer state-dən oxu
-  const timerMeasurements = useSelector(state => state.timer.measurements); // Timer ölçülərini oxu
-  const { activePage, isRunning } = useSelector(state => state.globalStatus); // Global state-dən oxu
+  const { hours, minutes, seconds } = useSelector(state => state.timer); 
+  const timerMeasurements = useSelector(state => state.timer.measurements); 
+  const { activePage, isRunning } = useSelector(state => state.globalStatus); 
 
   const isZero = hours === 0 && minutes === 0 && seconds === 0;
 
-  // Taymerin dəyərlərini artıran/azaldan düymələrin aktivliyi
-  const disableTimeControls = isRunning; // Timer işləyirsə passiv olsun
+  const disableTimeControls = isRunning; 
 
 
   const handleSave = () => {
@@ -48,18 +47,14 @@ export default function Timer() {
             <button className="time-btn" onClick={() => dispatch(decrementSeconds())} disabled={disableTimeControls}>-</button>
           </div>
         </div>
-        {/* Play/Pause iconu burada yoxdur, GlobalPlayPauseButton komponentindədir */}
       </div>
-      {/* Əlavə düymələr */}
       <div className="secondary-action-row">
          <button className="secondary-action-btn" onClick={handleSave} disabled={isZero}>
           Yadda saxla
         </button>
-        {/* Timer üçün sıfırla düyməsi */}
-        {/* Sıfırla düyməsi yalnız işləməyəndə və vaxt sıfırdan fərqli olanda aktiv olsun */}
          <button className="secondary-action-btn" onClick={() => dispatch(resetTimer())} disabled={isRunning || isZero}>Sıfırla</button>
       </div>
-      <MeasurementsDisplay type="timer" /> {/* Timer ölçülərini göstər */}
+      <MeasurementsDisplay type="timer" /> 
     </div>
   );
 }

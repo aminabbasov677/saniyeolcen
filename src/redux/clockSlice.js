@@ -24,7 +24,7 @@ const clockSlice = createSlice({
         state.seconds.toString().padStart(2, '0'),
       ].join(':');
       state.measurements.unshift(time);
-      if (state.measurements.length > 10) state.measurements.pop(); // Son 10 ölçünü saxla
+      if (state.measurements.length > 10) state.measurements.pop();
     },
   },
 });

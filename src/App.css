@@ -42,7 +42,7 @@ nav a.active, nav a[aria-current="page"] {
 .time-row {
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* Rəqəmləri eyni səviyyədə saxlayır */
+  align-items: flex-end; 
   gap: 32px;
   margin-bottom: 32px;
 }
@@ -50,7 +50,7 @@ nav a.active, nav a[aria-current="page"] {
 .time-block {
   display: flex;
   align-items: center;
-  gap: 8px; /* Rəqəm və +/- düymələri arasındakı boşluq */
+  gap: 8px; 
 }
 
 .time-value {
@@ -58,13 +58,13 @@ nav a.active, nav a[aria-current="page"] {
   font-weight: 400;
   margin: 0;
   letter-spacing: 2px;
-  min-width: 90px; /* Rəqəmlərin enini sabit saxla */
+  min-width: 90px; 
   text-align: right;
 }
 
 .time-controls {
   display: flex;
-  flex-direction: column; /* +/- düymələr alt-alta */
+  flex-direction: column; 
   gap: 4px;
 }
 
@@ -89,34 +89,32 @@ nav a.active, nav a[aria-current="page"] {
   cursor: not-allowed;
 }
 
-/* Play/Pause iconu stili */
 .icon-btn {
-  background: none; /* Fon yoxdur */
+  background: none;
   border: none;
-  padding: 0; /* Padding yoxdur */
+  padding: 0; 
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px; /* İkon ölçüsü */
-  height: 36px; /* İkon ölçüsü */
-  margin-left: 16px; /* Rəqəmlərdən bir az aralı */
+  width: 36px; 
+  height: 36px; 
+  margin-left: 16px; 
   transition: opacity 0.2s;
 }
 
 .icon-btn:disabled {
-  opacity: 0.5; /* Passiv olanda biraz solğun görünsün */
+  opacity: 0.5; 
   cursor: not-allowed;
 }
 
 .icon-btn svg {
-  fill: #222; /* Qara rəng */
-  width: 36px; /* SVG ölçüsü */
-  height: 36px; /* SVG ölçüsü */
+  fill: #222; 
+  width: 36px; 
+  height: 36px; 
   display: block;
 }
 
-/* Əlavə düymələr üçün stil (fon yox) */
 .secondary-action-row {
   margin-top: 24px;
   display: flex;
@@ -126,7 +124,7 @@ nav a.active, nav a[aria-current="page"] {
 
 .secondary-action-btn {
   background: none;
-  border: 1px solid #8e24aa; /* Rəngli çərçivə */
+  border: 1px solid #8e24aa; 
   color: #8e24aa;
   border-radius: 8px;
   width: 100px;
@@ -146,7 +144,6 @@ nav a.active, nav a[aria-current="page"] {
   cursor: not-allowed;
 }
 
-/* Keçmiş ölçmələr/Dairələr listi stili */
 .measurements-list {
   list-style: none;
   padding: 0;
@@ -157,17 +154,15 @@ nav a.active, nav a[aria-current="page"] {
 .measurements-list li {
   font-size: 22px;
   margin-bottom: 4px;
-  font-family: 'Roboto Mono', monospace; /* Şəkildəki kimi monospace font */
+  font-family: 'Roboto Mono', monospace; 
 }
 
-/* Başlıqlar stili */
 h3 {
   color: #8e24aa;
   font-weight: 500;
   margin-bottom: 12px;
 }
 
-/* Responsive dizayn üçün media query */
 @media (max-width: 600px) {
   .timer-container {
     max-width: 98vw;

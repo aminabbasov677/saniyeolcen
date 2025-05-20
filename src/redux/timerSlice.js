@@ -30,14 +30,14 @@ const timerSlice = createSlice({
         state.seconds.toString().padStart(2, '0'),
       ].join(':');
       state.measurements.unshift(time);
-      if (state.measurements.length > 10) state.measurements.pop(); // Son 10 ölçünü saxla
+      if (state.measurements.length > 10) state.measurements.pop(); 
     },
-    resetTimer: (state) => { // Taymeri sıfırlamaq üçün
+    resetTimer: (state) => { 
       state.hours = 0;
       state.minutes = 0;
       state.seconds = 0;
     },
-    tickTimer: (state) => { // Hər saniyə çağırmaq üçün tick reducer
+    tickTimer: (state) => { 
       if (state.seconds > 0) {
         state.seconds -= 1;
       } else if (state.minutes > 0) {

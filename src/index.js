@@ -2,16 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { Provider } from 'react-redux';
-import store from './redux/store'; // default import istifadə edirsinizsə
-// import { store } from './redux/store'; // əgər yalnız named export etmisinizsə
-import './index.css'; // Və ya './App.css' faylınızın yolu
-import { BrowserRouter as Router } from 'react-router-dom'; // BrowserRouter burada import olunur
+import store from './redux/store'; 
+import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode> {/* Əlavə yoxlamalar üçün */}
+  <React.StrictMode>
     <Provider store={store}>
-      <Router> {/* App komponenti Router içərisinə qoyulur */}
+      <Router> 
         <App />
       </Router>
     </Provider>

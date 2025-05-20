@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  elapsed: 0, // seconds
+  elapsed: 0, 
   laps: [],
 };
 
@@ -13,7 +13,7 @@ const stopwatchSlice = createSlice({
       state.elapsed = 0;
       state.laps = [];
     },
-    tickStopwatch: (state) => { // Hər saniyə çağırmaq üçün tick reducer
+    tickStopwatch: (state) => { 
       state.elapsed += 1;
     },
     addLap: (state) => {
@@ -22,7 +22,7 @@ const stopwatchSlice = createSlice({
       const s = state.elapsed % 60;
       const lapTime = [h, m, s].map(x => x.toString().padStart(2, '0')).join(':');
       state.laps.unshift(lapTime);
-      if (state.laps.length > 10) state.laps.pop(); // Son 10 lap-ı saxla
+      if (state.laps.length > 10) state.laps.pop();
     },
   },
 });

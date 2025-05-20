@@ -3,16 +3,14 @@ import { toggleRunning, forceStop } from '../redux/globalStatusSlice';
 import { useEffect, useRef } from 'react';
 import { tickStopwatch } from '../redux/stopwatchSlice';
 import { tickTimer, resetTimer } from '../redux/timerSlice';
-import store from '../redux/store'; // Store-u import edin
+import store from '../redux/store'; 
 
-// Play icon SVG
 const PlayIcon = () => (
   <svg width="36" height="36" viewBox="0 0 36 36">
     <path d="M11 8.83V27.17C11 28.38 12.25 29.16 13.3 28.55L28.8 19.38C29.7 18.85 29.7 17.15 28.8 16.62L13.3 7.45C12.25 6.84 11 7.62 11 8.83Z"/>
   </svg>
 );
 
-// Pause icon SVG
 const PauseIcon = () => (
   <svg width="36" height="36" viewBox="0 0 36 36">
     <rect x="10" y="8" width="5" height="20" rx="1"/>

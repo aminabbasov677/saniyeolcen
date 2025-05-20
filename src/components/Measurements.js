@@ -16,9 +16,9 @@ export default function MeasurementsDisplay({ type }) {
     data = timerMeasurements;
   } else if (type === 'stopwatch') {
     title = 'Dairələr';
-    data = laps; // Stopwatch laps artıq formatlı saxlanılır
+    data = laps;
   } else {
-    return null; // Naməlum tip
+    return null;
   }
 
 
