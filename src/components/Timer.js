@@ -18,7 +18,6 @@ export default function Timer() {
 
   const disableTimeControls = isRunning; 
 
-
   const handleSave = () => {
     dispatch(addTimerMeasurement());
   };
@@ -51,8 +50,8 @@ export default function Timer() {
       <div className="secondary-action-row">
          <button className="secondary-action-btn" onClick={handleSave} disabled={isZero}>
           Yadda saxla
-        </button>
-         <button className="secondary-action-btn" onClick={() => dispatch(resetTimer())} disabled={isRunning || isZero}>Sıfırla</button>
+         </button>
+         <button className="secondary-action-btn" onClick={() => dispatch(resetTimer())} disabled={isZero}>Sıfırla</button>
       </div>
       <MeasurementsDisplay type="timer" /> 
     </div>

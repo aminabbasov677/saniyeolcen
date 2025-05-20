@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  activePage: '/', // Default olaraq Saniyəölçən
+  activePage: '/', 
   isRunning: false,
 };
 

@@ -31,8 +31,7 @@ export default function Stopwatch() {
   const isElapsedZero = elapsed === 0;
 
   const disableReset = isElapsedZero;
-  const disableLap = !isRunning || isElapsedZero;
-
+  const disableLap = isElapsedZero; // Yalnız elapsed === 0 olduqda deaktiv et
 
   return (
     <div className="timer-container">
@@ -45,7 +44,7 @@ export default function Stopwatch() {
         <button className="secondary-action-btn" onClick={handleAddLap} disabled={disableLap}>Dairə</button>
       </div>
 
-       <MeasurementsDisplay type="stopwatch" />
+      <MeasurementsDisplay type="stopwatch" />
     </div>
   );
 }
