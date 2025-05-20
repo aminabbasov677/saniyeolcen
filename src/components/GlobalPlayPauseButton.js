@@ -38,9 +38,9 @@ export default function GlobalPlayPauseButton() {
             const currentState = store.getState();
             const currentTimerState = currentState.timer;
 
-            if (activePage === '/') { // Saniyəölçən
+            if (activePage === '/') { 
                  dispatch(tickStopwatch());
-            } else if (activePage === '/timer') { // Taymer
+            } else if (activePage === '/timer') { 
                  if (currentTimerState.hours === 0 && currentTimerState.minutes === 0 && currentTimerState.seconds === 0) {
                      dispatch(forceStop());
                      clearInterval(intervalRef.current);
@@ -78,7 +78,7 @@ export default function GlobalPlayPauseButton() {
       onClick={handleToggleRunning}
       disabled={isDisabled}
       aria-label={isRunning ? "Dayan" : "Başla"}
-      style={{marginLeft: '20px'}} // Yalnız sol tərəfdən boşluq veririk, auto silindi
+      style={{marginLeft: '20px',marginBottom: '10px'}} 
     >
       {isRunning ? <PauseIcon /> : <PlayIcon />}
     </button>
