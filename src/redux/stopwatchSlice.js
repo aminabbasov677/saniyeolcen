@@ -22,7 +22,7 @@ const stopwatchSlice = createSlice({
       const s = state.elapsed % 60;
       const lapTime = [h, m, s].map(x => x.toString().padStart(2, '0')).join(':');
       state.laps.unshift(lapTime);
-      if (state.laps.length > 10) state.laps.pop();
+      if (state.laps.length > 10) state.laps.pop(); // Son 10 lap-ı saxla
     },
   },
 });

@@ -10,11 +10,10 @@ import Navigation from './components/Navigation';
 import GlobalPlayPauseButton from './components/GlobalPlayPauseButton';
 import PageTracker from './components/PageTracker';
 
-
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { activePage } = useSelector(state => state.globalStatus); // activePage state-dən oxunur
+  const { activePage } = useSelector(state => state.globalStatus);
 
   useEffect(() => {
     dispatch(setActivePage(location.pathname));
@@ -23,14 +22,13 @@ function App() {
   const showGlobalPlayPause = activePage !== '/clock';
 
   return (
-    
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
          <Navigation />
          {showGlobalPlayPause && <GlobalPlayPauseButton />}
       </div>
       <Routes> 
-        <Route path="/" element={<Stopwatch />} /> 
+        <Route index element={<Stopwatch />} /> {/* Use index for default route */}
         <Route path="/clock" element={<Clock />} />
         <Route path="/timer" element={<Timer />} />
       </Routes>
